@@ -26,8 +26,9 @@ addCommand({
 			return createText("Failed finding target player cframe", false)
 		end
 		local _arg0 = function(player)
+			createText("Attempting to teleport " .. player.Name, false)
 			local character = player.Character
-			if character and character:IsA("Model") then
+			if character then
 				local hrp = character:FindFirstChild("HumanoidRootPart")
 				if hrp then
 					hrp.CFrame = cframe

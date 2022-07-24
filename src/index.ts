@@ -44,8 +44,9 @@ addCommand({
 			return createText("Failed finding target player cframe", false);
 		}
 		players.forEach((player) => {
+      createText("Attempting to teleport " + player.Name, false);
 			const character = player.Character;
-			if (character && character.IsA("Model")) {
+			if (character) {
 				const hrp = character.FindFirstChild("HumanoidRootPart");
 				if (hrp) {
 					(hrp as BasePart).CFrame = cframe;
