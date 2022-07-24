@@ -31,4 +31,29 @@ addCommand({
 	arguments: ["Players"],
 });
 
+addCommand({
+	name: "tp",
+	description: "tp some players to a player",
+	aliases: [],
+	func: (players: Player[], player: Player) => {
+		const cframe =
+			player.Character &&
+			player.Character.FindFirstChild("HumanoidRootPart") &&
+			(player.Character.FindFirstChild("HumanoidRootPart") as BasePart)!.CFrame;
+		if (!cframe) {
+			return createText("Failed finding target player cframe", false);
+		}
+		players.forEach((player) => {
+			const character = player.Character;
+			if (character && character.IsA("Model")) {
+				const hrp = character.FindFirstChild("HumanoidRootPart");
+				if (hrp) {
+					(hrp as BasePart).CFrame = cframe;
+				}
+			}
+		});
+	},
+	arguments: ["Players", "Player"],
+});
+
 export {};
