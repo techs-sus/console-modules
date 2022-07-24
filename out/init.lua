@@ -20,13 +20,13 @@ addCommand({
 	name = "tp",
 	description = "tp some players to a player",
 	aliases = {},
-	func = function(players, player)
-		local cframe = player.Character and (player.Character:FindFirstChild("HumanoidRootPart") and (player.Character:FindFirstChild("HumanoidRootPart")).CFrame)
+	func = function(players, to_player)
+		local cframe = to_player.Character and (to_player.Character:FindFirstChild("HumanoidRootPart") and (to_player.Character:FindFirstChild("HumanoidRootPart")).CFrame)
 		if not cframe then
 			return createText("Failed finding target player cframe", false)
 		end
 		local _arg0 = function(player)
-			createText("Attempting to teleport " .. player.Name, false)
+			createText("Attempting to teleport " .. (player.Name .. (" to " .. to_player.Name)), false)
 			local character = player.Character
 			if character then
 				local hrp = character:FindFirstChild("HumanoidRootPart")

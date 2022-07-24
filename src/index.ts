@@ -35,16 +35,16 @@ addCommand({
 	name: "tp",
 	description: "tp some players to a player",
 	aliases: [],
-	func: (players: Player[], player: Player) => {
+	func: (players: Player[], to_player: Player) => {
 		const cframe =
-			player.Character &&
-			player.Character.FindFirstChild("HumanoidRootPart") &&
-			(player.Character.FindFirstChild("HumanoidRootPart") as BasePart)!.CFrame;
+			to_player.Character &&
+			to_player.Character.FindFirstChild("HumanoidRootPart") &&
+			(to_player.Character.FindFirstChild("HumanoidRootPart") as BasePart)!.CFrame;
 		if (!cframe) {
 			return createText("Failed finding target player cframe", false);
 		}
 		players.forEach((player) => {
-      createText("Attempting to teleport " + player.Name, false);
+			createText(`Attempting to teleport ${player.Name} to ${to_player.Name}`, false);
 			const character = player.Character;
 			if (character) {
 				const hrp = character.FindFirstChild("HumanoidRootPart");
