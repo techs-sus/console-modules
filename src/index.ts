@@ -1,5 +1,3 @@
-import realness from "./test";
-
 interface Box {
 	created: number;
 	box: TextBox;
@@ -19,14 +17,16 @@ declare const filterRichText: (text: string) => string;
 declare const runCommand: (message: string) => void;
 
 addCommand({
-	name: "module-dev",
-	description: "Testing module",
-	aliases: ["test_module"],
-	func: () => {
-		createText("Hello!!!", false);
-		createText(`Import: ${realness}`, false);
+	name: "kill",
+	description: "Kill a player",
+	aliases: ["die"],
+	func: (player: Player) => {
+		const character = player.Character;
+		if (character && character.IsA("Model")) {
+			character.BreakJoints();
+		}
 	},
-	arguments: [],
+	arguments: ["Player"],
 });
 
 export {};

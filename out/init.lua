@@ -1,14 +1,14 @@
 -- Compiled with roblox-ts v1.3.3
-local TS = _G[script]
-local realness = TS.import(script, script, "test").default
 addCommand({
-	name = "module-dev",
-	description = "Testing module",
-	aliases = { "test_module" },
-	func = function()
-		createText("Hello!!!", false)
-		createText("Import: " .. realness, false)
+	name = "kill",
+	description = "Kill a player",
+	aliases = { "die" },
+	func = function(player)
+		local character = player.Character
+		if character and character:IsA("Model") then
+			character:BreakJoints()
+		end
 	end,
-	arguments = {},
+	arguments = { "Player" },
 })
 return nil
