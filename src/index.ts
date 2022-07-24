@@ -18,15 +18,17 @@ declare const runCommand: (message: string) => void;
 
 addCommand({
 	name: "kill",
-	description: "Kill a player",
+	description: "Kill some players",
 	aliases: ["die"],
-	func: (player: Player) => {
-		const character = player.Character;
-		if (character && character.IsA("Model")) {
-			character.BreakJoints();
-		}
+	func: (players: Player[]) => {
+		players.forEach((player) => {
+			const character = player.Character;
+			if (character && character.IsA("Model")) {
+				character.BreakJoints();
+			}
+		});
 	},
-	arguments: ["Player"],
+	arguments: ["Players"],
 });
 
 export {};
